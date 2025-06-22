@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/quest-grid/static/css/main.c89f00bb.css",
+    "main.js": "/quest-grid/static/js/main.e820b9fb.js",
+    "static/js/453.701952c3.chunk.js": "/quest-grid/static/js/453.701952c3.chunk.js",
+    "index.html": "/quest-grid/index.html",
+    "main.c89f00bb.css.map": "/quest-grid/static/css/main.c89f00bb.css.map",
+    "main.e820b9fb.js.map": "/quest-grid/static/js/main.e820b9fb.js.map",
+    "453.701952c3.chunk.js.map": "/quest-grid/static/js/453.701952c3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c89f00bb.css",
+    "static/js/main.e820b9fb.js"
+  ]
+}
