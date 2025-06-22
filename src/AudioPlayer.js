@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./styles.css";
-
+import guitar from "./assets/guitar.png";
 const LOCAL_STORAGE_KEY = "audioPlayerState";
 
 const AudioPlayer = () => {
@@ -382,7 +382,7 @@ const AudioPlayer = () => {
         title="Open Audio Player"
         aria-label="Open audio player"
       >
-        <img src="/assets/guitar.png" alt="Music Player" />
+        <img src={guitar} alt="Music Player" />
       </button>
 
       {playerElements.map((id, index) => (

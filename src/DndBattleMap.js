@@ -2,13 +2,22 @@ import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
 
+// Import all character images directly
+// Adjust paths based on where DndBattleMap.jsx is relative to src/assets/characters/
+import nauruImage from "./assets/characters/nauru.jpg";
+import martinImage from "./assets/characters/martin.jpg";
+import eredinImage from "./assets/characters/eredin.jpg";
+import hardekImage from "./assets/characters/hardek.jpg";
+import lexiasImage from "./assets/characters/lexias.jpg";
+
 const DndBattleMap = () => {
   // --- Predefined Characters ---
+  // Now, the 'image' property will just store the ID, and we'll use the map
   const predefinedCharacters = [
     {
       id: "nauru",
       name: "Nauru",
-      image: "/assets/characters/nauru.jpg",
+      image: nauruImage,
       color: "#FF5252",
       position: { x: 5, y: 5 },
       notes: "",
@@ -17,7 +26,7 @@ const DndBattleMap = () => {
     {
       id: "martin",
       name: "Martin",
-      image: "/assets/characters/martin.jpg",
+      image: martinImage,
       color: "#448AFF",
       position: { x: 8, y: 5 },
       notes: "",
@@ -26,7 +35,7 @@ const DndBattleMap = () => {
     {
       id: "eredin",
       name: "Eredin",
-      image: "/assets/characters/eredin.jpg",
+      image: eredinImage,
       color: "#69F0AE",
       position: { x: 11, y: 5 },
       notes: "",
@@ -35,7 +44,7 @@ const DndBattleMap = () => {
     {
       id: "hardek",
       name: "Hardek",
-      image: "/assets/characters/hardek.jpg",
+      image: hardekImage,
       color: "#FFD740",
       position: { x: 14, y: 5 },
       notes: "",
@@ -44,7 +53,7 @@ const DndBattleMap = () => {
     {
       id: "lexias",
       name: "Lexias",
-      image: "/assets/characters/lexias.jpg",
+      image: lexiasImage,
       color: "#E040FB",
       position: { x: 17, y: 5 },
       notes: "",

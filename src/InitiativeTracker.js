@@ -15,6 +15,9 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
+// Import the cross-swords image directly
+import crossSwordsImage from "./assets/cross-swords.png"; // Adjust path if needed
+
 const InitiativeTracker = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [characters, setCharacters] = useState([]);
@@ -155,6 +158,23 @@ const InitiativeTracker = () => {
       transition,
     };
 
+    // Dynamically import character image
+    // This uses a function to require the image, which Webpack handles.
+    // Ensure that the path is correct relative to the *current file*.
+    const getCharacterImage = (charId) => {
+      try {
+        // This line tells Webpack to look for the image in the specified folder
+        // and include it in the bundle.
+        // Adjust the path './assets/characters/' if InitiativeTracker.jsx is in a subfolder.
+        return require(`./assets/characters/${charId.toLowerCase()}.jpg`);
+      } catch (err) {
+        console.warn(`Image for character ${charId} not found.`);
+        return null; // Return null or a placeholder image
+      }
+    };
+
+    const characterImageUrl = getCharacterImage(char.id);
+
     return (
       <div
         ref={setNodeRef}
@@ -171,11 +191,11 @@ const InitiativeTracker = () => {
           </div>
 
           <div className="character-image">
-            <img
-              src={`/assets/characters/${char.id.toLowerCase()}.jpg`}
-              alt={char.name}
-              onError={(e) => (e.target.style.display = "none")}
-            />
+            {characterImageUrl ? (
+              <img src={characterImageUrl} alt={char.name} />
+            ) : (
+              <div className="placeholder-image">?</div> // Or a default image
+            )}
           </div>
 
           <div className="character-info">
@@ -207,7 +227,8 @@ const InitiativeTracker = () => {
   return (
     <>
       <button className="initiative-fab" onClick={() => setIsOpen(!isOpen)}>
-        <img src="/assets/cross-swords.png" alt="Initiative Tracker" />
+        {/* Use the imported crossSwordsImage */}
+        <img src={crossSwordsImage} alt="Initiative Tracker" />
       </button>
 
       {isOpen && (

@@ -2,6 +2,24 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 
+// Import all dice images directly
+import d4Image from "./assets/dices/d4.png";
+import d6Image from "./assets/dices/d6.png";
+import d8Image from "./assets/dices/d8.png";
+import d10Image from "./assets/dices/d10.png";
+import d12Image from "./assets/dices/d12.png";
+import d20Image from "./assets/dices/d20.png";
+
+// Create a mapping for easy access
+const diceImageMap = {
+  4: d4Image,
+  6: d6Image,
+  8: d8Image,
+  10: d10Image,
+  12: d12Image,
+  20: d20Image,
+};
+
 const diceTypes = [4, 6, 8, 10, 12, 20];
 
 const DiceRoller = () => {
@@ -61,11 +79,8 @@ const DiceRoller = () => {
         onClick={() => setVisible(true)}
         title="Open Dice Roller"
       >
-        <img
-          src="/dices/d20.png"
-          alt="Open Dice Roller"
-          className="dice-image "
-        />
+        {/* Use the imported d20Image */}
+        <img src={d20Image} alt="Open Dice Roller" className="dice-image " />
         <div className="number-overlay">{20}</div>
       </button>
       {visible && (
@@ -81,8 +96,9 @@ const DiceRoller = () => {
                   className="dice-wrapper clickable"
                   onClick={() => addDice(sides)}
                 >
+                  {/* Use the diceImageMap to get the correct image */}
                   <img
-                    src={`/dices/d${sides}.png`}
+                    src={diceImageMap[sides]}
                     alt={`d${sides}`}
                     className="dice-image"
                   />
@@ -102,6 +118,7 @@ const DiceRoller = () => {
                     sides={dice.sides}
                     rolling={rolling}
                     finalValue={finalValues[index]}
+                    diceImageMap={diceImageMap} // Pass the map down
                   />
                 </div>
               ))}
@@ -124,7 +141,8 @@ const DiceRoller = () => {
   );
 };
 
-const RollingDie = ({ sides, rolling, finalValue }) => {
+// RollingDie component also needs the image map
+const RollingDie = ({ sides, rolling, finalValue, diceImageMap }) => {
   const [value, setValue] = useState("?");
 
   useEffect(() => {
@@ -150,8 +168,9 @@ const RollingDie = ({ sides, rolling, finalValue }) => {
 
   return (
     <div className="dice-wrapper">
+      {/* Use the diceImageMap here too */}
       <img
-        src={`/dices/d${sides}.png`}
+        src={diceImageMap[sides]}
         alt={`d${sides}`}
         className={`dice-image ${rolling ? "spin" : ""}`}
       />
